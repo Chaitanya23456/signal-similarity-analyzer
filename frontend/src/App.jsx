@@ -5,11 +5,11 @@ import {
 } from 'recharts';
 import { Activity, Zap, Info, BarChart3, Binary } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/analyze';
+const API_URL = import.meta.env.VITE_API_URL || 'https://signal-similarity-analyzer.onrender.com/api/analyze';
 
 function App() {
-  const [sig1Str, setSig1Str] = useState('1.2, 2.3, 3.4, 4.5, 5.0, 4.2, 3.1, 2.0');
-  const [sig2Str, setSig2Str] = useState('1.0, 2.5, 3.2, 4.8, 5.1, 4.0, 2.9, 1.8');
+  const [sig1Str, setSig1Str] = useState('');
+  const [sig2Str, setSig2Str] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -41,10 +41,6 @@ function App() {
     }
   };
 
-  // Initial analysis on load
-  useEffect(() => {
-    handleAnalyze();
-  }, []);
 
   const chartData = result ? result.signal1.map((val, idx) => ({
     name: idx,
