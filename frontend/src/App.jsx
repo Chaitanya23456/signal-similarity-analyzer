@@ -31,6 +31,12 @@ function App() {
       return;
     }
 
+    if (signal1.length !== signal2.length) {
+      setError(`Length mismatch! Signal 1 has ${signal1.length} points, Signal 2 has ${signal2.length} points. Both must be equal.`);
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post(API_URL, { signal1, signal2 });
       setResult(response.data);

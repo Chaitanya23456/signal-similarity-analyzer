@@ -15,10 +15,15 @@ app.post('/api/analyze', (req, res) => {
         return res.status(400).json({ error: "Signals must be arrays" });
     }
 
-    // Handle unequal length (as per original Python code)
-    const minLen = Math.min(signal1.length, signal2.length);
-    const s1 = signal1.slice(0, minLen);
-    const s2 = signal2.slice(0, minLen);
+    if (signal1.length !== signal2.length) {
+        return res.status(400).json({ 
+            error: `Signal length mismatch: Signal 1 has ${signal1.length} points, Signal 2 has ${signal2.length} points.` 
+        });
+    }
+
+    const minLen = signal1.length;
+    const s1 = signal1;
+    const s2 = signal2;
 
     let correlation = 0;
     let similarity = "NOT SIMILAR";
