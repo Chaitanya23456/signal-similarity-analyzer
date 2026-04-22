@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 import { Activity, Zap, Info, BarChart3, Binary } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api/analyze';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/analyze';
 
 function App() {
   const [sig1Str, setSig1Str] = useState('1.2, 2.3, 3.4, 4.5, 5.0, 4.2, 3.1, 2.0');
